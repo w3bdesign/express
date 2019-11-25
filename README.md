@@ -1,5 +1,5 @@
-# Express
- Coding a SaaS App in JavaScript
+# Express SaaS
+ Coding a SaaS App in JavaScript with Node and Express
  
  ## Running
  
