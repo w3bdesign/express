@@ -7,11 +7,38 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
+var dotenv = require("dotenv");
+dotenv.config();
+
+var bcrypt = require("bcrypt");
 var mongoose = require("mongoose");
+require("./models");
+var User = mongoose.model("User");
 
 var app = express();
 
-mongoose.connect("localhost:27017");
+mongoose
+  .connect(
+    "mongodb://" +
+      process.env.MONGODB_ADDON_USER +
+      ":" +
+      process.env.MONGODB_ADDON_PASSWORD +
+      "@" +
+      process.env.MONGODB_ADDON_HOST +
+      ":27017/" +
+      process.env.MONGODB_ADDON_DB,
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
+  .catch(error => console.log("Error connecting database"));
+
+let newUser = new User({
+  email: "test@epost.no",
+  passwordHash: bcrypt.hashSync("123456789", 10)
+});
+newUser.save(function(err) {
+  //next(err, newUser);
+});
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
