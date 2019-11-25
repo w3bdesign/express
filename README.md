@@ -17,7 +17,7 @@ MONGODB_ADDON_USER
 
 Then start with <i>NPM START</i>
 
-### TODO
+## TODO
 
 - Add Stripe support
 - Add Passport authentication
