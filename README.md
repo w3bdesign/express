@@ -15,7 +15,7 @@ MONGODB_ADDON_PASSWORD
 MONGODB_ADDON_USER
 <hr>
 
-Then start with <b>NPM START</b>
+Then start with <i>NPM START</i>
 
 ### TODO
 
