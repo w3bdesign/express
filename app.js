@@ -16,6 +16,7 @@ require("./models");
 var User = mongoose.model("User");
 
 var app = express();
+var passport = require("passport");
 
 mongoose
   .connect(
@@ -31,13 +32,14 @@ mongoose
   )
   .catch(error => console.log("Error connecting database"));
 
-let newUser = new User({
+// Uncomment to add a new entry to the database
+/*let newUser = new User({
   email: "test@epost.no",
   passwordHash: bcrypt.hashSync("123456789", 10)
 });
 newUser.save(function(err) {
-  //next(err, newUser);
-});
+ 
+});*/
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -53,8 +55,13 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
 app.post("/register", function(req, res, next) {
-  console.log(req.body);
-  next();
+  let newUser = new User({
+    email: req.body.email,
+    passwordHash: bcrypt.hashSync(req.body.password, 15)
+  });
+  newUser.save(function(err) {
+    next(err, newUser);
+  });
 });
 
 // catch 404 and forward to error handler
