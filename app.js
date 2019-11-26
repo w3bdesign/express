@@ -76,22 +76,45 @@ passport.use(
   )
 );
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
 app.get("/login", function(req, res, next) {
   res.render("login", { title: "Express Sass Prosjekt" });
+});
+
+app.get("/main", function(req, res, next) {
+  res.render("main", { title: "Express Sass Prosjekt Hovedside" });
 });
 
 app.get("/", function(req, res, next) {
   res.render("index", { title: "Express Sass Prosjekt" });
 });
 
-app.get("/main", function(req, res) {
-  res.redirect("/main");
-});
-
 app.post("/login", passport.authenticate("local"), function(req, res) {
   // If this function gets called, authentication was successful.
   // `req.user` contains the authenticated user.
-  res.redirect("/main");
+  console.log(req.user);
+  res.render("main", { title: "Express Sass Prosjekt Hovedside" });
+});
+
+app.post(
+  "/signup",
+  passport.authenticate("signup-local", { failureRedirect: "/" }),
+  function(req, res) {
+    res.render("main", { title: "Express Sass Prosjekt Hovedside" });
+  }
+);
+
+app.get("/loggut", function(req, res, next) {
+  req.logout();
+  res.redirect("/");
+  console.log("Logger ut....");
 });
 
 app.post("/register", function(req, res, next) {
