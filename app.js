@@ -18,6 +18,10 @@ var User = mongoose.model("User");
 var app = express();
 var passport = require("passport");
 
+// Add additional security
+var helmet = require("helmet");
+app.use(helmet());
+
 mongoose
   .connect(
     "mongodb://" +
@@ -31,15 +35,6 @@ mongoose
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .catch(error => console.log("Error connecting database"));
-
-// Uncomment to add a new entry to the database
-/*let newUser = new User({
-  email: "test@epost.no",
-  passwordHash: bcrypt.hashSync("123456789", 10)
-});
-newUser.save(function(err) {
- 
-});*/
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -72,6 +67,7 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
