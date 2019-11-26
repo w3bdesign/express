@@ -1,5 +1,6 @@
 # Express SaaS
  Coding a SaaS App in JavaScript with Node and Express. 
+
  Features:
  
  - Bootstrap 4
@@ -31,5 +32,4 @@ npm start
 ## TODO
 
 - Add Stripe support
-- Add Passport authentication
 - Set NODE_ENV variable to production
