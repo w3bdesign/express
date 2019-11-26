@@ -26,3 +26,4 @@ npm start
 
 - Add Stripe support
 - Add Passport authentication
+- Set NODE_ENV variable to production
