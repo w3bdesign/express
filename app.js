@@ -3,20 +3,18 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-
+var mongoose = require("mongoose");
+require("./models");
+var bcrypt = require("bcrypt");
+var expressSession = require("express-session");
+var passport = require("passport");
+var LocalStrategy = require("passport-local").Strategy;
 var dotenv = require("dotenv");
 dotenv.config();
 
-var bcrypt = require("bcrypt");
-var mongoose = require("mongoose");
-require("./models");
 var User = mongoose.model("User");
 
 var app = express();
-var passport = require("passport");
 
 // Add additional security
 var helmet = require("helmet");
@@ -46,8 +44,55 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(
+  expressSession({
+    secret: process.env.EXPRESS_SESSION_SECRET
+  })
+);
+
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password"
+    },
+    function(email, password, next) {
+      User.findOne(
+        {
+          email: email
+        },
+        function(err, user) {
+          if (err) return next(err);
+          if (!user || !bcrypt.compareSync(password, user.passwordHash)) {
+            return next({ message: "Email or password incorrect" });
+          }
+          next(null, user);
+        }
+      );
+    }
+  )
+);
+
+app.get("/login", function(req, res, next) {
+  res.render("login", { title: "Express Sass Prosjekt" });
+});
+
+app.get("/", function(req, res, next) {
+  res.render("index", { title: "Express Sass Prosjekt" });
+});
+
+app.get("/main", function(req, res) {
+  res.redirect("/main");
+});
+
+app.post("/login", passport.authenticate("local"), function(req, res) {
+  // If this function gets called, authentication was successful.
+  // `req.user` contains the authenticated user.
+  res.redirect("/main");
+});
 
 app.post("/register", function(req, res, next) {
   let newUser = new User({

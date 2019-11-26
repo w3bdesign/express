@@ -10,4 +10,8 @@ router.get("/main", function(req, res, next) {
   res.render("main", { title: "Hovedside" });
 });
 
+router.get("/login", function(req, res, next) {
+  res.render("login", { title: "Innlogging" });
+});
+
 module.exports = router;
