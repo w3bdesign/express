@@ -8,6 +8,7 @@ require("./models");
 // Replace Bcrypt with Argon2?
 var bcrypt = require("bcrypt");
 
+// https://flaviocopes.com/express-sessions/
 //var expressSession = require("express-session");
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
