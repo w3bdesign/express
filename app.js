@@ -5,7 +5,9 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 require("./models");
+// Replace Bcrypt with Argon2?
 var bcrypt = require("bcrypt");
+
 //var expressSession = require("express-session");
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
@@ -49,7 +51,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Use Express session
+// Use Express session?
 /*app.use(
   expressSession({
     secret: process.env.EXPRESS_SESSION_SECRET
