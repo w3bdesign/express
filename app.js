@@ -6,7 +6,7 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 require("./models");
 var bcrypt = require("bcrypt");
-var expressSession = require("express-session");
+//var expressSession = require("express-session");
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var dotenv = require("dotenv");
@@ -16,10 +16,12 @@ var User = mongoose.model("User");
 
 var app = express();
 
-// Add additional security
+// Add additional security through Helmet
+// See https://helmetjs.github.io/
 var helmet = require("helmet");
 app.use(helmet());
 
+// Connect to our MongoDB database with the information provided in the .env file
 mongoose
   .connect(
     "mongodb://" +
@@ -47,11 +49,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(
+// Use Express session
+/*app.use(
   expressSession({
     secret: process.env.EXPRESS_SESSION_SECRET
   })
-);
+);*/
 
 passport.use(
   new LocalStrategy(
@@ -76,6 +79,14 @@ passport.use(
   )
 );
 
+/*
+The user id (you provide as the second argument of the done function) is saved in the session and is later used to retrieve 
+the whole object via the deserializeUser function.
+
+serializeUser determines which data of the user object should be stored in the session. 
+The result of the serializeUser method is attached to the session as req.session.passport.user = {}
+*/
+
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
@@ -84,25 +95,29 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+// Route for login page
 app.get("/login", function(req, res, next) {
-  res.render("login", { title: "Express Sass Prosjekt" });
+  res.render("login", { title: "Express Sass Prosjekt Innlogging" });
 });
 
+// Route for main page
 app.get("/main", function(req, res, next) {
   res.render("main", { title: "Express Sass Prosjekt Hovedside" });
 });
 
+// Route for frontpage
 app.get("/", function(req, res, next) {
   res.render("index", { title: "Express Sass Prosjekt" });
 });
 
+// If this function gets called, authentication was successful.
+// `req.user` contains the authenticated user.
+// Render the Main view with res.render if we are successful
 app.post("/login", passport.authenticate("local"), function(req, res) {
-  // If this function gets called, authentication was successful.
-  // `req.user` contains the authenticated user.
-  console.log(req.user);
   res.render("main", { title: "Express Sass Prosjekt Hovedside" });
 });
 
+// Try to authenticate if we access /signup by POST (after form submit)
 app.post(
   "/signup",
   passport.authenticate("signup-local", { failureRedirect: "/" }),
@@ -111,18 +126,23 @@ app.post(
   }
 );
 
+// Logout and redirect to front page if we access /loggut
 app.get("/loggut", function(req, res, next) {
   req.logout();
   res.redirect("/");
   console.log("Logger ut....");
 });
 
+// Create new user and hash the password with Bcrypt
 app.post("/register", function(req, res, next) {
   let newUser = new User({
+    // Set the email to the email value from the input field
     email: req.body.email,
     passwordHash: bcrypt.hashSync(req.body.password, 15)
   });
+  // Save the user to MongoDB within the newUser object
   newUser.save(function(err) {
+    res.render("main", { title: "Express Sass Prosjekt Hovedside" });
     next(err, newUser);
   });
 });
