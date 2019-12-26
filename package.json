@@ -1,6 +1,6 @@
 {
   "name": "express",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -9,7 +9,7 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~4.1.1",
@@ -18,12 +18,12 @@
     "express": "~4.17.1",
     "helmet": "^3.21.2",
     "http-errors": "^1.7.3",
-    "mongoose": "^5.7.12",
+    "mongoose": "^5.8.3",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.1",
-    "passport": "^0.4.0",
+    "nodemon": "^2.0.2",
+    "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "save": "^2.4.0",
-    "stripe": "^7.13.1"
+    "stripe": "^7.14.0"
   }
 }
