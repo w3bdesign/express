@@ -25,6 +25,8 @@ MONGODB_ADDON_PASSWORD
 MONGODB_ADDON_USER
 ```
 
+To run this on Heroku or Netlify, add the values above to config vars/environment variables.
+
 Then start with
 
 ```
