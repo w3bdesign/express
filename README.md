@@ -35,6 +35,4 @@ npm start
 
 ## TODO
 
-- Add Stripe support
-- Set NODE_ENV variable to production
 - Cleanup code
