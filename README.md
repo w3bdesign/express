@@ -9,7 +9,7 @@ Features:
 - Bootstrap 4
 - Express.js
 - Authentication through Passport
-- MongoDB / Mongoose
+- MongoDB database with Mongoose
 
 ## Running
 
