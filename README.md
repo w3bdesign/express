@@ -36,3 +36,4 @@ npm start
 ## TODO
 
 - Cleanup code
+- Add more features?
