@@ -24,7 +24,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "save": "^2.4.0",
-    "stripe": "^7.15.0"
+    "stripe": "^8.18.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
