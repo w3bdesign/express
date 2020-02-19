@@ -36,4 +36,5 @@ npm start
 ## TODO
 
 - Cleanup code
+- Check for existing user before creating new user
 - Add more features?
