@@ -23,7 +23,6 @@ const User = mongoose.model("User");
 const app = express();
 
 // Add additional security through Helmet
-// See https://helmetjs.github.io/
 const helmet = require("helmet");
 
 app.use(helmet());
