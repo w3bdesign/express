@@ -16,7 +16,7 @@
     "dotenv": "^8.2.0",
     "ejs": "~3.0.1",
     "express": "~4.17.1",
-    "helmet": "^3.21.2",
+    "helmet": "^3.21.3",
     "http-errors": "^1.7.3",
     "mongoose": "^5.9.2",
     "morgan": "~1.9.1",
