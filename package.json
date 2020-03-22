@@ -9,25 +9,25 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "dependencies": {
-    "bcrypt": "^3.0.8",
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
-    "cookie-parser": "~1.4.4",
+    "cookie-parser": "~1.4.5",
     "debug": "~4.1.1",
     "dotenv": "^8.2.0",
     "ejs": "~3.0.1",
     "express": "~4.17.1",
     "helmet": "^3.21.3",
     "http-errors": "^1.7.3",
-    "mongoose": "^5.9.2",
-    "morgan": "~1.9.1",
+    "mongoose": "^5.9.5",
+    "morgan": "~1.10.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "save": "^2.4.0",
-    "stripe": "^8.24.0"
+    "stripe": "^8.33.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.1",
     "nodemon": "^2.0.2"
