@@ -2,7 +2,6 @@
 
 Coding a SaaS App in JavaScript with Node and Express.
 
-https://express-d.herokuapp.com/
 
 Features:
 
