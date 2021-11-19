@@ -1,6 +1,6 @@
 {
   "name": "express",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -11,25 +11,25 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
-    "cookie-parser": "~1.4.5",
-    "debug": "~4.3.1",
-    "dotenv": "^8.2.0",
-    "ejs": "~3.1.6",
-    "express": "~4.17.1",
-    "helmet": "^4.4.1",
-    "http-errors": "^1.8.0",
-    "mongoose": "^5.12.11",
+    "cookie-parser": "~1.4.6",
+    "debug": "~4.3.2",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "http-errors": "^1.8.1",
+    "mongoose": "^6.0.13",
     "morgan": "~1.10.0",
-    "passport": "^0.4.1",
+    "passport": "^0.5.0",
     "passport-local": "^1.0.0",
     "save": "^2.4.0",
-    "stripe": "^8.138.0"
+    "stripe": "^8.190.0"
   },
   "devDependencies": {
-    "eslint": "^7.22.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-import": "^2.22.1",
-    "nodemon": "^2.0.7"
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "nodemon": "^2.0.15"
   }
 }
